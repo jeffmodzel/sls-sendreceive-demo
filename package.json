@@ -1,0 +1,13 @@
+{
+  "name": "sls-sr-sendreceive-demo",
+  "description": "",
+  "version": "0.0.1",
+  "author": "Jeff Modzel <jemod@yahoo.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffmodzel/sls-sendreceive-demo.git"
+  },
+  "dependencies": {
+    "uuid": "^3.4.0"
+  }
+}

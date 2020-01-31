@@ -1,10 +1,3 @@
-# Welcome to Serverless!
-#
-# This file is the main config file for your service.
-# It's very minimal at this point and uses default values.
-# You can always add more config options for more control.
-# We've included some commented out config examples here.
-# Just uncomment any of them to get that config option.
 #
 # For full config options, check the docs:
 #    docs.serverless.com
@@ -41,6 +34,11 @@ provider:
         - dynamodb:*
       Resource:
         - "Fn::GetAtt": [DynamoDBTableUsers, Arn]
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - "Fn::GetAtt": [DynamoDBTableMessages, Arn]
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -146,6 +144,19 @@ resources:
         AttributeDefinitions:
           - AttributeName: ID
             AttributeType: N
+        KeySchema:
+          - AttributeName: ID
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+    DynamoDBTableMessages:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.project.tableMessages}
+        AttributeDefinitions:
+          - AttributeName: ID
+            AttributeType: S
         KeySchema:
           - AttributeName: ID
             KeyType: HASH
